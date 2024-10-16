@@ -25,12 +25,12 @@ public class BinaryToDec {
         System.out.println("Enter a binary number");
         Scanner s=new Scanner(System.in);
         int binNum=s.nextInt();
-        System.out.println("Decimal equivalent of "+binNum+" is :"+BinToDec(binNum));
+        System.out.println("Binary equivalent of "+binNum+" is :"+BinToDec(binNum));
 
 
         //Decimal to binary
         System.out.println("Enter a Decimal number ");
         int Decum=s.nextInt();
-        System.out.println("Binary equivalent of "+Decum+" is : "+DectoBin(Decum));
+        System.out.println("Decimal equivalent of "+Decum+" is : "+DectoBin(Decum));
     }
 }

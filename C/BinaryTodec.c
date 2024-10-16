@@ -10,10 +10,26 @@ int BintoDec(int n){
     }
     return dec;
 }
+int DectoBin(int n){
+    int power=1,rem,BinaryNum=0;
+    while(n>0){
+        rem=n%2;
+        BinaryNum=BinaryNum+(rem*power);
+        power*=10;
+        n/=2;
+    }
+    return BinaryNum;
+}
 int main(){
-    printf("Enter the binary number");
+    printf("\nEnter the binary number");
     int BinNum;
     scanf("%d",&BinNum);
-    printf("%d",BintoDec(BinNum));
+    printf("Decimal equivalent of %d is %d\n", BinNum, BintoDec(BinNum));
+
+    //decimal to binary
+    printf("\nEnter the Decimal number");
+    int Decnum;
+    scanf("%d",&Decnum);
+    printf("Binary equivalent of %d is %d\n", Decnum, DectoBin(Decnum));
 
 }
