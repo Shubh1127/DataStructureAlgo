@@ -1,8 +1,10 @@
+import java.util.Arrays;
+
 public class Selection {
     public static void main(String agrs[]){
             int arr[]={5,1,3,2,6};
 
-            for(int i=0;i<arr.length-1;i++){
+            for(int i=0;i<arr.length;i++){
                 int minPos= i;
                 for(int j=i+1;j<arr.length;j++){
                         if(arr[minPos]>arr[j]){
