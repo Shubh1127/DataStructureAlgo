@@ -1,4 +1,17 @@
 #include<stdio.h>
+#include<stdbool.h>
+bool search(int rows,int cols,int key,int matrix[rows][cols]){
+
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            if(matrix[i][j]==key){
+                printf("Key was found at : (%d,%d)",i,j);
+                return true;
+            }
+        }
+    }
+    return false;
+}
 int main(){
     printf("Enter the size of rows\n");
     int rows;
@@ -22,4 +35,9 @@ for(int i=0;i<rows;i++){
     }
     printf("\n");
     }
+
+    int key;
+    printf("\nEnter the key to search\n");
+    scanf("%d",&key);
+    search(rows,cols,key,arr);
 }
