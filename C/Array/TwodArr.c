@@ -10,6 +10,7 @@ bool search(int rows,int cols,int key,int matrix[rows][cols]){
             }
         }
     }
+    printf("Key not found");
     return false;
 }
 int main(){

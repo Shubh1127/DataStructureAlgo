@@ -11,6 +11,7 @@ public class TwodArr {
                 }
             }
         }
+        System.out.println("key not found");
         return false;
     }
     public static void main(String args[]){
