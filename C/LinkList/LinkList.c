@@ -8,6 +8,7 @@ struct Node {
 struct Node *start;
 struct Node *insert_at_beg(struct Node*);
 struct Node *insert_at_end(struct Node*);
+struct Node *insert_at_loc(struct Node*);
 void printData(struct Node*);
 int main(){
     int choice;
@@ -15,6 +16,7 @@ int main(){
     do{
         printf("\n1.Insert at beginning");
         printf("\n2.Insert at end");
+        printf("\n3.Insert at loc");
         printf("\nEnter your choice");
         scanf("%d",&choice);
         switch(choice){
@@ -22,7 +24,9 @@ int main(){
             break;
             case 2:start=insert_at_end(start);
             break;
-            case 3:printData(start);
+            case 3:start=insert_at_loc(start);
+            break;
+            case 4:printData(start);
             break;
             default:printf("\nwrong choice by user");
         }
@@ -75,4 +79,32 @@ void printData(struct Node *start){
         ptr=ptr->next;
     }
     printf("NULL");
+}
+
+struct Node *insert_at_loc(struct Node *start){
+    printData(start);
+    int value;
+    printf("\nEnter the node after which you want to insert new value");
+    scanf("%d",&value);
+    struct Node *ptr;
+    ptr=start;
+    while(ptr!=NULL){
+        if(value==ptr->data){
+            break;
+        }else{
+            ptr=ptr->next;
+        }
+    }
+    if(ptr==NULL){
+        printf("\nInsertion not possible. value Node not found");
+    }else{
+        struct Node *temp;
+        temp=(struct Node*)malloc(sizeof(struct Node));
+        printf("\nEnter the new data");
+        scanf("%d",&temp->data);
+        temp->next=ptr->next;
+        ptr->next=temp;
+    }
+    printData(start);
+    return start;
 }
