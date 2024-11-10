@@ -11,6 +11,7 @@ struct Node *insert_at_end(struct Node*);
 struct Node *insert_at_loc(struct Node*);
 struct Node *delete_first(struct Node*);
 struct Node *delete_last(struct Node*);
+struct Node *delete_At_loc(struct Node*);
 void printList(struct Node *start){
     struct Node *ptr;
     ptr=start;
@@ -30,6 +31,7 @@ int main(){
         printf("3.Insert at the loc\n");
         printf("4.Delete first node");
         printf("\n5.Delete last node");
+        printf("\n6.Delete at loc");
         printf("\nEnter your choice : \n");
         scanf("%d",&choice);
         switch (choice)
@@ -43,6 +45,8 @@ int main(){
         case 4:start=delete_first(start);
         break;
         case 5:start=delete_last(start);
+        break;
+        case 6:start=delete_At_loc(start);
         break;
         default:printf("Wrong choice by user.\n");
             break;
@@ -146,4 +150,36 @@ struct Node *delete_last(struct Node *start){
         printList(start);
     }
     return start;
+}
+struct Node *delete_At_loc(struct Node *start){
+    printList(start);
+   int value;
+   printf("\nEnter the data to be deleted");
+   scanf("%d",&value);
+        struct Node *temp,*prev;
+        temp=start;
+        if(value==temp->data){
+            start=delete_first(start);
+            return start;
+        }
+        else{
+            while(temp!=NULL){
+                if(value==temp->data){
+                    break;
+                }else{
+                    prev=temp;
+                    temp=temp->next;
+                }
+            }
+            if(temp==NULL){
+                printf("\nNode not found");
+            }else{
+                prev->next=temp->next;
+                printf("\n|%d| is deleted\n",temp->data);
+                free(temp);
+                printList(start);
+            }
+            return start;
+        }
+    
 }
