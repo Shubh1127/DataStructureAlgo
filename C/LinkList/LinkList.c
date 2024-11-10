@@ -12,6 +12,7 @@ struct Node *insert_at_loc(struct Node*);
 struct Node *delete_first(struct Node*);
 struct Node *delete_last(struct Node*);
 struct Node *delete_At_loc(struct Node*);
+void searchData(struct Node*);
 void printList(struct Node *start){
     struct Node *ptr;
     ptr=start;
@@ -32,7 +33,8 @@ int main(){
         printf("4.Delete first node");
         printf("\n5.Delete last node");
         printf("\n6.Delete at loc");
-        printf("\nEnter your choice : \n");
+        printf("\n7.Search node value");
+        printf("\nEnter your choice : ");
         scanf("%d",&choice);
         switch (choice)
         {
@@ -48,17 +50,19 @@ int main(){
         break;
         case 6:start=delete_At_loc(start);
         break;
+        case 7:searchData(start);
+        break;
         default:printf("Wrong choice by user.\n");
             break;
         }
-        printf("\nDo you want to continue(y/n)\n");
+        printf("\nDo you want to continue(y/n): ");
         ch=getche();
     }while(ch=='y'||ch=='Y');
 }
 struct Node *insert_at_beg(struct Node *start){
     struct Node *temp;
     temp=(struct Node*)malloc(sizeof(struct Node));
-    printf("Enter the data");
+    printf("Enter the data: ");
     scanf("%d",&temp->data);
     if(start==NULL){
         start=temp;
@@ -73,7 +77,7 @@ struct Node *insert_at_beg(struct Node *start){
 struct Node *insert_at_end(struct Node *start){
     struct Node *temp;
     temp=(struct Node*)malloc(sizeof(struct Node));
-    printf("\nEnter the data\n");
+    printf("\nEnter the data: ");
     scanf("%d",&temp->data);
     temp->next=NULL;
     if(start==NULL){
@@ -92,7 +96,7 @@ struct Node *insert_at_end(struct Node *start){
 struct Node *insert_at_loc(struct Node *start){
     printList(start);
     int value;
-    printf("\nEnter the node value after which you want to insert new node value\n");
+    printf("\nEnter the node value after which you want to insert new node value: ");
     scanf("%d",&value);
     struct Node *ptr;
     ptr=start;
@@ -154,7 +158,7 @@ struct Node *delete_last(struct Node *start){
 struct Node *delete_At_loc(struct Node *start){
     printList(start);
    int value;
-   printf("\nEnter the data to be deleted");
+   printf("\nEnter the data to be deleted: ");
    scanf("%d",&value);
         struct Node *temp,*prev;
         temp=start;
@@ -182,4 +186,26 @@ struct Node *delete_At_loc(struct Node *start){
             return start;
         }
     
+}
+void searchData(struct Node *start){
+    printList(start);
+    int data;
+    printf("\nEnter the data to search: ");
+    scanf("%d",&data);
+    int pos=0;
+    struct Node *temp;
+    temp=start;
+    while(temp!=NULL){
+        pos++;
+        if(data==temp->data){
+            break;
+        }else{
+            temp=temp->next;
+        }
+    }
+    if(temp==NULL){
+        printf("\nData not found");
+    }else{
+        printf("%d is found at : %d",temp->data,pos);
+    }
 }
