@@ -9,6 +9,7 @@ struct Node *start=NULL;
 struct Node *insert_at_beg(struct Node *);
 struct Node *insert_at_end(struct Node *);
 struct Node *insert_at_loc(struct Node *);
+struct Node *delete_at_beg(struct Node *);
 void printList(struct Node *);
 int main(){
     int choice;
@@ -25,6 +26,8 @@ int main(){
             case 2:start=insert_at_end(start);
             break;
             case 3:start=insert_at_loc(start);
+            break;
+            case 4:start=delete_at_beg(start);
             break;
             default:printf("\nWrong choice by user");
         }printf("\nDo you want to continue(y/n)?");
@@ -120,7 +123,32 @@ struct Node *insert_at_loc(struct Node *start){
     return start;
 }
 
-
+struct Node *delete_at_beg(struct Node *start){
+    if(start==NULL){
+        printf("\nNo deletion Possible");
+    }
+    else if(start->next==start){
+        printList(start);
+        printf("\n|%d| is deleted",start->data);
+        start=NULL;
+        free(start);
+    }else{
+        printList(start);
+        struct Node *ptr;
+        ptr=start;
+        while(ptr->next!=start){
+            ptr=ptr->next;
+        }
+        struct Node *temp;
+        temp=start;
+        printf("\n|%d| is deleted",temp->data);
+        start=start->next;
+        ptr->next=temp->next;
+        free(temp);
+    }
+    printList(start);
+    return start;
+}
 
 void printList(struct Node *start){
     if(start==NULL){
