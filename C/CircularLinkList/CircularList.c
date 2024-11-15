@@ -102,7 +102,7 @@ struct Node *insert_at_loc(struct Node *start){
         temp->next=temp;
         start=temp;
     }else if(start->next==start){
-    printList(start);
+        printList(start);
         start=insert_at_end(start);
         return start;
     }
@@ -123,8 +123,13 @@ struct Node *insert_at_loc(struct Node *start){
         }
         while(ptr!=start);
         if(ptr==start && prevNode==ptr->data){
+            struct Node *last=start;
+            while(last->next!=start){
+                last=last->next;
+            }
             temp->next=ptr->next;
             ptr->next=temp;
+            last->next=temp;
         }else if(ptr==start){
             printf("\nNo Insertion possible. Given Node not found");
         }
