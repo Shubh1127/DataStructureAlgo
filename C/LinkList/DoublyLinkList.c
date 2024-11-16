@@ -30,7 +30,7 @@ int main()
         printf("\n5.Delete Last Node");
         printf("\n6.Delete Any Node");
         printf("\n7.Traverse in Forward Direction");
-        printf("\n7.Traverse in Backward Direction");
+        printf("\n8.Traverse in Backward Direction");
         printf("\nEnter your choice");
         scanf("%d", &choice);
         switch (choice)
@@ -53,6 +53,10 @@ int main()
         case 6:
             start = Delete_Loc(start);
             break;
+        case 7:traverseListForward(start);
+        break;
+        case 8:traverseListBackward(start);
+        break;
         default:
             printf("\nWrong choice by user");
         }
@@ -161,6 +165,7 @@ struct Node *Insert_Loc(struct Node *start)
     else
     {
         int value;
+        traverseListForward(start);
         printf("\nEnter the node after which you want to insert new node: ");
         scanf("%d", &value);
         printf("\nEnter the data: ");
@@ -233,6 +238,7 @@ struct Node *Delete_Last(struct Node *start)
     if (start == NULL)
     {
         printf("\nList is empty.No deletion possible");
+        return start;
     }
     else if (start->next == NULL)
     {
@@ -253,52 +259,25 @@ struct Node *Delete_Last(struct Node *start)
     traverseListBackward(last);
     return start;
 }
-struct Node *Delete_Loc(struct Node *start)
-{
-    if (start == NULL)
-    {
-        printf("\nList is empty.No deletion possible");
-        return start;
-    }else if(start->next==NULL){
-        printf("\n|%d| is deleted",start->data);
-        free(start);
-        start=NULL;
-        last=NULL;
-        traverseListForward(start);
-        printf(" NOW");
+struct Node *Delete_Loc(struct Node *start){
+    if (start == NULL){
+        printf("\nList is empty. No deletion possible");
         return start;
     }
-    else
-    {
-        int value;
-        traverseListForward(start);
-        printf("\nEnter the node which you want to delete: ");
-        scanf("%d", &value);
-        struct Node *ptr = start;
-        while (ptr != NULL)
-        {
-            if (ptr == start && value == ptr->data)
-            {
-                start = Delete_First(start);
-                return start;
+    int value;
+    traverseListForward(start);
+    printf("\nEnter the node which you want to delete: ");
+    scanf("%d", &value);
+    struct Node *ptr = start;
+    while (ptr != NULL){
+        if (value == ptr->data){
+            if (ptr == start){
+                start = Delete_First(start); 
             }
-            else if (ptr == last && value == ptr->data)
-            {
-                start = Delete_Last(start);
-                return start;
+            else if (ptr == last){
+                start = Delete_Last(start);  
             }
-            else if (value == ptr->data)
-            {
-                break;
-            }
-            ptr = ptr->next;
-        }
-            if (ptr == NULL)
-            {
-                printf("\nNo deletion possible as Node not found");
-            }
-            else
-            {
+            else{
                 ptr->prev->next = ptr->next;
                 ptr->next->prev = ptr->prev;
                 printf("\n|%d| is deleted", ptr->data);
@@ -307,5 +286,9 @@ struct Node *Delete_Loc(struct Node *start)
             traverseListForward(start);
             traverseListBackward(last);
             return start;
+        }
+        ptr = ptr->next;
     }
+    printf("\nNode not found. No deletion performed.");
+    return start;
 }
