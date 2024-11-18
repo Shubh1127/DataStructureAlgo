@@ -48,7 +48,6 @@ void push(){
 
 }
 void pop(){
-    int item;
     struct Node *temp;
     temp=top;
     if(temp==NULL){
