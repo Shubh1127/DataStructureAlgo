@@ -23,67 +23,60 @@ int main(){
         case 3:printQueue();
             break;
         default:printf("\nWrong choice by user");
-    }printf("Do you want to continue(y/n)?: ");
+    }printf("\nDo you want to continue(y/n)?: ");
     ch=getche();
     }while(ch=='y' || ch=='Y');
 }
 void enqueue(){
     if(front==(rear+1)%max){
-        printf("\nQueue is overflow!");
+            printf("\nQueue is overflow");
     }else{
         int item;
-        printf("\nEnter the data into queue: ");
+        printf("Enter the data: ");
         scanf("%d",&item);
         if(front==-1){
             front=rear=0;
         }else{
-            rear++;
+            rear=(rear+1)%max;
         }
         queue[rear]=item;
         printf("\n%d is inserted",item);
+        printQueue();
     }
-    printQueue();    
 }
 void dequeue(){
     if(front==-1){
         printf("\nQueue is underflow");
     }else{
-        int item;
-        item=queue[front];
+        int item=queue[front];
         if(front==rear){
-            front=rear=-1;
+                front=rear=-1;
         }else{
             front=(front+1)%max;
-            printf("\n%d is deleted",item);
         }
+        printf("%d is deleted",item);
         printQueue();
     }
 }
 void printQueue(){
-	int i;
-	if(front==-1)
-		printf("Queue is UnderFlow");
-	else
-	{
-    if (front > rear)
-    {
-        printf("\n[");
-        for (i = front; i <max; i++)
-        {
-            printf("%d,", queue[i]);
+    if(front==-1){
+        printf("\nQueue is underflow");
+    }else{
+        if(front>rear){
+            printf("\n[");
+            for(int i=front;i<max;i++){
+                printf("%d ,",queue[i]);
+            }
+            for(int i=0;i<=rear;i++){
+                printf("%d ,",queue[i]);
+            }
+            printf("]\n");
+        }else{
+                printf("\n[");
+                for(int i=front;i<=rear;i++){
+                    printf("%d ,",queue[i]);
+                }
+                printf("]\n");
         }
-        for (i = 0; i <= rear; i++){
-            printf("%d,", queue[i]);
-        }
-        printf("]\n");
     }
-    else
-    {
-        printf("\n[");
-        for (i = front; i <= rear; i++){
-        printf("%d,", queue[i]);
-        }
-        printf("]\n");
-    }	
-	}
 }
