@@ -65,21 +65,25 @@ void printQueue(){
 		printf("Queue is UnderFlow");
 	else
 	{
-	
-    printf("\n");
     if (front > rear)
     {
+        printf("\n[");
         for (i = front; i <max; i++)
         {
-            printf("%d ", queue[i]);
+            printf("%d,", queue[i]);
         }
-        for (i = 0; i <= rear; i++)
-            printf("%d ", queue[i]);
+        for (i = 0; i <= rear; i++){
+            printf("%d,", queue[i]);
+        }
+        printf("]\n");
     }
     else
     {
-        for (i = front; i <= rear; i++)
-        printf("%d ", queue[i]);
+        printf("\n[");
+        for (i = front; i <= rear; i++){
+        printf("%d,", queue[i]);
+        }
+        printf("]\n");
     }	
 	}
 }
