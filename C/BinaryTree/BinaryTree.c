@@ -32,7 +32,7 @@ int main(){
                 break;
             case 4:inorder(root);
                 break;
-            default:printf("\nWrong choice by user");
+            default:printf("\nBad choice");
         }
             printf("\nDO you want to continue(y/n)?: ");
             ch=getche();
