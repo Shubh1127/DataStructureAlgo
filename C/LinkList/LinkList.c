@@ -14,6 +14,9 @@ struct Node *delete_last(struct Node*);
 struct Node *delete_At_loc(struct Node*);
 void searchData(struct Node*);
 void printList(struct Node *start){
+    if(start==NULL){
+        printf("\nList is empty");
+    }else{
     struct Node *ptr;
     ptr=start;
     printf("|start|->");
@@ -22,6 +25,7 @@ void printList(struct Node *start){
         ptr=ptr->next;
     }
     printf("NULL");
+    }
 }
 int main(){
     int choice;
@@ -62,7 +66,7 @@ int main(){
 struct Node *insert_at_beg(struct Node *start){
     struct Node *temp;
     temp=(struct Node*)malloc(sizeof(struct Node));
-    printf("Enter the data: ");
+    printf("\nEnter the data: ");
     scanf("%d",&temp->data);
     if(start==NULL){
         start=temp;
@@ -95,6 +99,10 @@ struct Node *insert_at_end(struct Node *start){
 }
 struct Node *insert_at_loc(struct Node *start){
     printList(start);
+    if(start==NULL){
+      start=insert_at_beg(start);
+        return start;
+    }
     int value;
     printf("\nEnter the node value after which you want to insert new node value: ");
     scanf("%d",&value);
