@@ -120,7 +120,7 @@ struct Node *Insert_First(struct Node *start)
         temp->next = start;
         temp->prev = NULL;
         start->prev = temp;
-        start = temp;
+        start = temp;   
     }
     traverseListForward(start);
     traverseListBackward(last);
