@@ -1,77 +1,66 @@
 #include<stdio.h>
-#include<conio.h>
 #include<stdlib.h>
+#include<conio.h>
 struct Node{
     int data;
     struct Node *next;
 };
 struct Node *start=NULL;
-struct Node *insert_at_beg(struct Node*);
-struct Node *insert_at_end(struct Node*);
-struct Node *insert_at_loc(struct Node*);
-struct Node *delete_first(struct Node*);
-struct Node *delete_last(struct Node*);
-struct Node *delete_At_loc(struct Node*);
-void searchData(struct Node*);
-void printList(struct Node *start){
-    if(start==NULL){
-        printf("\nList is empty");
-    }else{
-    struct Node *ptr;
-    ptr=start;
-    printf("|start|->");
-    while(ptr!=NULL){
-        printf("|%d|->",ptr->data);
-        ptr=ptr->next;
-    }
-    printf("NULL");
-    }
-}
+struct Node *insert_at_beg(struct Node *);
+struct Node *insert_at_end(struct Node *);
+struct Node *insert_at_loc(struct Node *);
+struct Node *delete_at_beg(struct Node *);
+struct Node *delete_at_end(struct Node *);
+struct Node *delete_at_loc(struct Node *);
+void printList(struct Node*);
 int main(){
     int choice;
     char ch;
     do{
-        printf("\n1.Insert at the beg\n");
-        printf("2.Insert at the end\n");
-        printf("3.Insert at the loc\n");
-        printf("4.Delete first node");
-        printf("\n5.Delete last node");
-        printf("\n6.Delete at loc");
-        printf("\n7.Search node value");
-        printf("\nEnter your choice : ");
+        printf("1.Insert at beg\n2.Insert at end\n3.Insert at loc\n4.Delete at beg\n5.delete at end\n6.delete at loc\n7.Print List\nEnter your choice: ");
         scanf("%d",&choice);
-        switch (choice)
-        {
-        case 1:start=insert_at_beg(start);
-            break;
-        case 2:start=insert_at_end(start);
-            break;
-        case 3:start=insert_at_loc(start);
-            break;
-        case 4:start=delete_first(start);
-        break;
-        case 5:start=delete_last(start);
-        break;
-        case 6:start=delete_At_loc(start);
-        break;
-        case 7:searchData(start);
-        break;
-        default:printf("Wrong choice by user.\n");
-            break;
+        switch(choice){
+            case 1:start=insert_at_beg(start);
+                break;
+            case 2:start=insert_at_end(start);
+                break;
+            case 3:start=insert_at_loc(start);
+                break;
+            case 4:start=delete_at_beg(start);
+                break;
+            case 5:start=delete_at_end(start);
+                break;
+            case 6:start=delete_at_loc(start);
+                break;
+            case 7:printList(start);
+                break;
+            default:printf("Wrong choice");
         }
-        printf("\nDo you want to continue(y/n): ");
+        printf("\nDo you want to continue(y/n)?: ");
         ch=getche();
-    }while(ch=='y'||ch=='Y');
+    }while(ch=='y');
+}
+void printList(struct Node *start){
+    if(start==NULL){
+        printf("List is empty");
+    }else{
+        struct Node *ptr=start;
+        printf("\n|start|->");
+        while(ptr!=NULL){
+            printf("|%d|->",ptr->data);
+            ptr=ptr->next;
+        }
+        printf("|end|");
+    }
 }
 struct Node *insert_at_beg(struct Node *start){
-    struct Node *temp;
-    temp=(struct Node*)malloc(sizeof(struct Node));
-    printf("\nEnter the data: ");
+    struct Node *temp=malloc(sizeof(struct Node));
+    printf("\nEnter the node: ");
     scanf("%d",&temp->data);
     if(start==NULL){
         start=temp;
         temp->next=NULL;
-    }else{
+    }else {
         temp->next=start;
         start=temp;
     }
@@ -79,141 +68,114 @@ struct Node *insert_at_beg(struct Node *start){
     return start;
 }
 struct Node *insert_at_end(struct Node *start){
-    struct Node *temp;
-    temp=(struct Node*)malloc(sizeof(struct Node));
-    printf("\nEnter the data: ");
+    struct Node *temp=malloc(sizeof(struct Node));
+    printf("\nEnter the node: ");
     scanf("%d",&temp->data);
-    temp->next=NULL;
     if(start==NULL){
         start=temp;
+        temp->next=NULL;
     }else{
-        struct Node *ptr;
-        ptr=start;
+        struct Node *ptr=start;
         while(ptr->next!=NULL){
             ptr=ptr->next;
         }
         ptr->next=temp;
+        temp->next=NULL;
     }
     printList(start);
-    return start;
+     return start;
 }
 struct Node *insert_at_loc(struct Node *start){
-    printList(start);
     if(start==NULL){
-      start=insert_at_beg(start);
+        start=insert_at_beg(start);
+        return start;
+    }else if(start->next==NULL){
+        start=insert_at_end(start);
+        return start;
+    }else{
+        int value;
+        printList(start);
+        printf("\nEnter the node after which you want to insert: ");
+        scanf("%d",&value);
+        struct Node *temp=malloc(sizeof(struct Node));
+        struct Node *ptr=start;
+        while(ptr!=NULL){
+            if(ptr->data==value){
+                break;
+            }else{
+                ptr=ptr->next;
+            }
+        }
+        if(ptr==NULL){
+            printf("\nNode not found");
+        }else{
+            printf("\nEnter the node: ");
+            scanf("%d",&temp->data);
+            temp->next=ptr->next;
+            ptr->next=temp;
+        }
+        printList(start);
         return start;
     }
-    int value;
-    printf("\nEnter the node value after which you want to insert new node value: ");
-    scanf("%d",&value);
-    struct Node *ptr;
-    ptr=start;
-    while(ptr!=NULL){
-        if(value==ptr->data){
-            break;
-        }else{
-            ptr=ptr->next;
-        }
-    }
-    if(ptr==NULL){
-        printf("Insertion is not possible.The Given Node value is not found\n");
+}
+struct Node *delete_at_beg(struct Node *start){
+    if(start==NULL){
+        printf("\nList is empty");
     }else{
-        printf("Enter the new node value\n");
-        struct Node *temp;
-        temp=(struct Node*)malloc(sizeof(struct Node));
-        scanf("%d",&temp->data);
-        temp->next=ptr->next;
-        ptr->next=temp;                        
+        struct Node *ptr=start;
+        printf("\n|%d| is deleted",ptr->data);
+        start=start->next;
+        free(ptr);
     }
     printList(start);
     return start;
 }
-struct Node *delete_first(struct Node *start){
+struct Node *delete_at_end(struct Node *start){
     if(start==NULL){
-        printf("\nList is empty .NO deletion possible");
+        printf("\nList is empty");
     }else{
-        struct Node *temp;
-        temp=start;
-        start=start->next;
-        printf("|%d| is deleted\n",temp->data);
-        free(temp);
-        printList(start);
-    }
-    return start;
-}
-struct Node *delete_last(struct Node *start){
-    if(start==NULL){
-        printf("\nList is empty. No deletion possible");
-    }else if(start->next==NULL){
-        printf("\n|%d| is deleted",start->data);
-        free(start);
-        start=NULL;
-    }else{
-        struct Node *ptr;
-        struct Node *prev=NULL;
-        ptr=start;
+        struct Node *ptr=start,*prev=NULL;
         while(ptr->next!=NULL){
             prev=ptr;
             ptr=ptr->next;
         }
-        printf("\n|%d| is deleted\n",ptr->data);
-        free(ptr);
         prev->next=NULL;
-        printList(start);
+        printf("\n|%d| is deleted",ptr->data);
+        free(ptr);
     }
+    printList(start);
     return start;
 }
-struct Node *delete_At_loc(struct Node *start){
-    printList(start);
-   int value;
-   printf("\nEnter the data to be deleted: ");
-   scanf("%d",&value);
-        struct Node *temp,*prev;
-        temp=start;
-        if(value==temp->data){
-            start=delete_first(start);
-            return start;
-        }
-        else{
-            while(temp!=NULL){
-                if(value==temp->data){
-                    break;
-                }else{
-                    prev=temp;
-                    temp=temp->next;
-                }
-            }
-            if(temp==NULL){
-                printf("\nNode not found");
-            }else{
-                prev->next=temp->next;
-                printf("\n|%d| is deleted\n",temp->data);
-                free(temp);
-                printList(start);
-            }
-            return start;
-        }
-    
-}
-void searchData(struct Node *start){
-    printList(start);
-    int data;
-    printf("\nEnter the data to search: ");
-    scanf("%d",&data);
-    int pos=0;
-    struct Node *temp;
-    temp=start;
-    while(temp!=NULL){
-        pos++;
-        if(data==temp->data){
-            break;
-        }else{
-            temp=temp->next;
-        }
+struct Node *delete_at_loc(struct Node *start){
+    if(start==NULL){
+        printf("\nList is empty");
     }
-    if(temp==NULL){
-        printf("\nData not found");
-    }else{
-        printf("%d is found at : %d",temp->data,pos);
+    else{
+        int value;
+        printf("\nEnter the node which you want to delete: ");
+        scanf("%d",&value);
+        struct Node *ptr=start,*prev=NULL;
+        if(ptr->data==value){
+            start=delete_at_beg(start);
+            return start;
+        }else{
+        while(ptr!=NULL){
+            if(ptr->data==value){
+                break;
+            }else{
+                prev=ptr;
+                ptr=ptr->next;
+            }
+        }
+        if(ptr==NULL){
+            printf("\nNode not found");
+        }else{
+            prev->next=ptr->next;
+            printf("\n|%d| is deleted",ptr->data);
+            free(ptr);
+        }
+        }
+        printList(start);
+        return start;
     }
 }
