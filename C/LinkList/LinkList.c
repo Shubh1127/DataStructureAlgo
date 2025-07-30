@@ -178,4 +178,4 @@ struct Node *delete_at_loc(struct Node *start){
         printList(start);
         return start;
     }
-}
+} 
