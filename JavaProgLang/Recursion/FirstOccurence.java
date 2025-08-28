@@ -1,6 +1,6 @@
 public class FirstOccurence {
     public static int firstOccurence(int arr[],int key,int i){
-        if(i==arr.length-1){
+        if(i==arr.length){
             return -1;
         }
         if(arr[i]==key){
