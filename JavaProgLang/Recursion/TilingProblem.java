@@ -8,7 +8,7 @@ public class TilingProblem {
     }
 
     public static void main(String[] args) {
-        int n = 4; // Example: 4x1 wall
+        int n = 4; // Example: 4x1 tiles
         System.out.println("Number of ways to tile " + n + "x1 wall: " + countWays(n));
     }
     
