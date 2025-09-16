@@ -8,6 +8,7 @@ public class MergeSort {
         // System.out.println();
     }
     public static void mergeSort(int arr[],int si,int ei){
+        if(si>=ei) return;
         int mid=si+(ei-si)/2;
         mergeSort(arr,si,mid);//left part
         mergeSort(arr,mid+1,ei); //right part
@@ -34,7 +35,7 @@ public class MergeSort {
             temp[k++]=arr[i++]; 
         }
         //right part
-        while(j<=e){
+        while(j<=ei){
             temp[k++]=arr[j++];
         }
 
@@ -46,6 +47,7 @@ public class MergeSort {
     }
     public static void main(String args[]){ 
         int arr[]={6,3,9,5,2,8};
+        mergeSort(arr,0,arr.length-1);
         printArr(arr);
 
     }
