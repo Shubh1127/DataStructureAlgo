@@ -19,7 +19,7 @@ public class QuickSort {
         arr[pIndex]=temp;
 
         quickSort(arr,si,pIndex-1); //left part
-        quickSort(arr,pIndex+1,ei); //right part
+        quickSort(arr,pIndex+1,ei); 
     }
     public static void printArr(int arr[]){
         for(int i=0;i<arr.length;i++){
