@@ -18,7 +18,7 @@ public class QuickSort {
         arr[ei]=arr[pIndex];
         arr[pIndex]=temp;
 
-        quickSort(arr,si,pIndex-1); //left part
+        quickSort(arr,si,pIndex-1); 
         quickSort(arr,pIndex+1,ei); 
     }
     public static void printArr(int arr[]){
