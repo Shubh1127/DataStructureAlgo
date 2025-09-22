@@ -18,8 +18,8 @@ public class QuickSort {
         arr[ei]=arr[pIndex];
         arr[pIndex]=temp;
 
-        quickSort(arr,si,pIndex-1); 
-        quickSort(arr,pIndex+1,ei); 
+        quickSort(arr,si,pIndex-1); //left part
+        quickSort(arr,pIndex+1,ei); //right part
     }
     public static void printArr(int arr[]){
         for(int i=0;i<arr.length;i++){
