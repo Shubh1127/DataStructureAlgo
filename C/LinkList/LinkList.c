@@ -65,7 +65,8 @@ struct Node *insert_at_beg(struct Node *start){
         start=temp;
     }
     printList(start);
-    return start;
+    return start;   
+        
 }
 struct Node *insert_at_end(struct Node *start){
     struct Node *temp=malloc(sizeof(struct Node));
