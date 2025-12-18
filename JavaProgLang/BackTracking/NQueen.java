@@ -20,6 +20,7 @@ public class NQueen {
         }
         return true;
     }
+    //NQueen function
     public static void NQueens(char board[][],int row){
         if(row==board.length){
             printBoard(board);
