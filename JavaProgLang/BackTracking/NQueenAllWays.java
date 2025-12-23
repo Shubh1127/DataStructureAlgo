@@ -1,4 +1,4 @@
-public class NQueen {
+public class NQueenAllWays {
     public static boolean isSafe(char board[][],int row,int col){
         //vertical up
         for(int i=row-1;i>=0;i--){
@@ -23,7 +23,8 @@ public class NQueen {
     //NQueen function
     public static void NQueens(char board[][],int row){
         if(row==board.length){
-            printBoard(board);
+            // printBoard(board);
+            count++;
             return;
         }
         for(int j=0;j<board.length;j++){
@@ -44,6 +45,7 @@ public class NQueen {
             System.out.println();
         }
     }
+    public static int count=0;
     public static void main(String args[]){
         int n=4;
         char board[][]=new char[n][n];
@@ -53,5 +55,7 @@ public class NQueen {
             }
         }
         NQueens(board,0);
+        System.out.println("Total ways to solve N-queen: "+count);
     }
+
 }
