@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Collections;
 //operations on ArrayList
 
 public class Op {
@@ -27,6 +27,8 @@ public class Op {
         //Contains operation
         System.out.println(list.contains(10));
 
-        
+        //sorting in an AL
+        Collections.sort(list);
+        System.out.println(list);
     }
 }
