@@ -28,7 +28,9 @@ public class Op {
         System.out.println(list.contains(10));
 
         //sorting in an AL
-        Collections.sort(list);
+        Collections.sort(list); //ascending order
+        System.out.println(list);
+        Collections.sort(list,Collections.reverseOrder()); //descending order
         System.out.println(list);
     }
 }
