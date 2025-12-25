@@ -10,12 +10,12 @@ public class LinkedList{
         this.next=null;
     }
    }
+    static Scanner s=new Scanner(System.in);
    public static Node head;
    public static Node tail;
 
    public static Node addFirst(Node head){
     System.out.println("Enter data to add at first: ");
-    Scanner s=new Scanner(System.in);
     int data=s.nextInt();
     Node newNode=new Node(data);
     if(head==null){
@@ -30,12 +30,11 @@ public class LinkedList{
    }
    public static Node addLast(Node head){
     System.out.println("Enter data to add at last: ");
-    Scanner s=new Scanner(System.in);
     int data=s.nextInt();
     Node newNode=new Node(data);
     if(head==null){
-        addFirst(head);
-        return head;
+        return addFirst(head);
+        
     }
     tail.next=newNode;
     tail=newNode;
@@ -63,7 +62,6 @@ public class LinkedList{
     }
     print(head);
     System.out.println("Enter the data after which you want to add new node: ");
-    Scanner s=new Scanner(System.in);
     int afterdata=s.nextInt();
     System.out.println("Enter data to add at mid: ");
     int data=s.nextInt();
@@ -85,7 +83,6 @@ public class LinkedList{
     int n;
     System.out.println("Linked List Operations:");
     System.out.println("1. Add First\n2. Add Last\n3. Add at Mid\n4. Print List");
-    Scanner s=new Scanner(System.in);
     while(true){
         System.out.println("Enter your choice: ");
         n=s.nextInt();
