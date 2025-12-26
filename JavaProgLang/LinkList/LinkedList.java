@@ -123,24 +123,39 @@ public class LinkedList{
     }
     //remove at mid
     public static Node remove_at_mid(Node head){
-        if(head==null){
-            return removeFirst(head);
-    }else if(head.next==null){
-        return removeFirst(head);
-    }else{
-        print(head);
-        System.out.println("Enter the data after which you want to remove node: ");
-        int afterdata=s.nextInt();
-        Node temp=head;
-        while(temp!=null && temp.data!=afterdata){
-            temp=temp.next;
-        }
-        temp.next=temp.next.next;
-        print(head);
+    if(head == null){
+        System.out.println("List is empty");
         return head;
     }
 
-   }
+    if(head.next == null){
+        return removeFirst(head);
+    }
+
+    print(head);
+    System.out.println("Enter the data after which you want to remove node: ");
+    int afterdata = s.nextInt();
+
+    Node temp = head;
+    while(temp != null && temp.data != afterdata){
+        temp = temp.next;
+    }
+
+    if(temp == null || temp.next == null){
+        System.out.println("Invalid operation");
+        return head;
+    }
+
+    if(temp.next == tail){
+        tail = temp;
+    }
+
+    temp.next = temp.next.next;
+
+    print(head);
+    return head;
+}
+
    public static void main(String args[]){
     // LinkedList ll=new LinkedList();
     // ll.addFirst(2);
