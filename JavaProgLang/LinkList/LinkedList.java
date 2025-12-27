@@ -163,7 +163,7 @@ public class LinkedList{
     // ll.addLast(3);
     int n;
     System.out.println("Linked List Operations:");
-    System.out.println("1. Add First\n2. Add Last\n3. Add at Mid\n4. Print List\n5. Remove First\n6. Remove Last\n7. Remove at Mid\n8. Exit");
+    System.out.println("1. Add First\n2. Add Last\n3. Add at Mid\n4. Remove First\n5. Remove Last\n6. Remove at Mid\n7. Print List\n8. Exit");
     while(true){
         System.out.println("Enter your choice: ");
         n=s.nextInt();
