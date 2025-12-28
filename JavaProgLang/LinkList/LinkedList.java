@@ -90,6 +90,7 @@ public class LinkedList{
     return head;
    }
 
+    //remove first
    public static Node removeFirst(Node head){
     if(head==null){
         System.out.println("List is empty");
