@@ -158,10 +158,6 @@ public class LinkedList{
 }
 
    public static void main(String args[]){
-    // LinkedList ll=new LinkedList();
-    // ll.addFirst(2);
-    // ll.addFirst(1);
-    // ll.addLast(3);
     int n;
     System.out.println("Linked List Operations:");
     System.out.println("1. Add First\n2. Add Last\n3. Add at Mid\n4. Remove First\n5. Remove Last\n6. Remove at Mid\n7. Print List\n8. Exit");
