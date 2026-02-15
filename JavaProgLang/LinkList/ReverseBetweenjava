@@ -1,0 +1,43 @@
+public class ReverseBetween{
+    public class ListNode{
+        int val;
+        ListNode next;
+        ListNode(int val){
+            this.val=val;
+            this.next=null;
+        }
+    }
+    public ListNode reverseBetween(ListNode head,int left,int right){
+        if(head==null || left==right){
+            return head;
+        }
+        ListNode dummy=new ListNode(0);
+        dummy.next=head;
+        ListNode prev=dummy;
+
+        for(int i=1;i<left;i++){
+            prev=prev.next;
+        }
+        ListNode current=prev.next;
+        for(int i=0;i<right-left;i++){
+            ListNode temp=current.next;
+            current.next=temp.next;
+            temp.next=prev.next;
+            prev.next=temp;
+        }
+        return dummy.next;
+
+    }
+    public static void main(String args[]){
+        ReverseBetween solution=new ReverseBetween();
+        ListNode head=solution.new ListNode(1);
+        head.next=solution.new ListNode(2);
+        head.next.next=solution.new ListNode(3);
+        head.next.next.next=solution.new ListNode(4);
+        head.next.next.next.next=solution.new ListNode(5);
+
+        int left=2;
+        int right=4;
+        ListNode result=solution.reverseBetween(head,left,right);
+    }
+}
