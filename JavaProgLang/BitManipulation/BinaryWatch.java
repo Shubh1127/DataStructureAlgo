@@ -12,6 +12,6 @@ public class BinaryWatch {
     }
     public static void main(String args[]){
         BinaryWatch obj=new BinaryWatch();
-        System.out.println(obj.readBinaryWatch(1));
+        System.out.println(obj.readBinaryWatch(2));
     }
 }
